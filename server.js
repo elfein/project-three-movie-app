@@ -16,10 +16,6 @@ connection.on('error', (err) => {
     console.log('Mongoose default connection error: ' + err)
 })
 
-
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-
 var app = express();
 
 app.use(logger('dev'));
@@ -34,5 +30,8 @@ app.get('/', (req, res) => {
 })
 
 // app.use('/users', usersRouter);
+const eventsController = require('./routes/eventsController')
+
+app.use('/api/events', eventsController)
 
 module.exports = app;
