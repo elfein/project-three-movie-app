@@ -20,6 +20,10 @@ router.post('/', async (req, res) => {
 })
 
 // Update
+router.put('/:id', async (req, res) => {
+    await Event.findByIdAndUpdate(req.params.id, req.body)
+    res.sendStatus(200)
+})
 
 // Delete
 router.delete('/:id', async (req, res) => {
