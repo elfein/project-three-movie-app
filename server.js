@@ -31,7 +31,9 @@ app.get('/', (req, res) => {
 
 // app.use('/users', usersRouter);
 const eventsController = require('./routes/eventsController')
+const moviesController = require('./routes/moviesController')
 
 app.use('/api/events', eventsController)
+app.use('/api/events/:eventId/movies', moviesController)
 
 module.exports = app;
