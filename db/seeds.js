@@ -16,26 +16,23 @@ const susan = new Voter({
 
 const jaws = new Movie({
     name: 'Jaws',
-    img: null,
     genre: 'thriller',
     minutes: 120,
-    supporters: [sam],
-    votes: 1
+    supporters: [sam]
 })
 const loveActually = new Movie({
     name: 'Love Actually',
     img: 'https://images-na.ssl-images-amazon.com/images/I/51BnA5c7wML._SY445_.jpg',
     genre: 'rom-com',
     minutes: 140,
-    supporters: [sam, susan],
-    votes: 2
+    supporters: [sam, susan]
 })
 
 const samsBday = new Event({
     name: 'Sam\'s Bday',
     date: '10/10',
     host: 'Sam',
-    feature: null,
+    about: 'A chill hangout for my 200th bday!',
     suggestions: [jaws, loveActually]
 })
 

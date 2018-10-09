@@ -16,14 +16,14 @@ const MovieSchema = new Schema({
     },
     genre: String,
     minutes: Number,
-    supporters: [VoterSchema],
-    votes: Number
+    supporters: []
 })
 
 const EventSchema = new Schema({
     name: String,
     date: String,
     host: String,
+    about: String,
     feature: {
         type: MovieSchema,
         default: {
@@ -31,8 +31,7 @@ const EventSchema = new Schema({
             img: 'https://s.studiobinder.com/wp-content/uploads/2017/12/Movie-Poster-Template-Dark-with-Image.jpg?x81279',
             genre: null,
             minutes: null,
-            supporters: [],
-            votes: 1000
+            supporters: ['Sam', 'Susan', 'Kevin']
         }
     },
     suggestions: [MovieSchema]
