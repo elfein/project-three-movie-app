@@ -10,12 +10,16 @@ export default class SuggestionList extends Component {
       }
       
       const suggestionList = suggestionArr.map((suggestion, i) => {
-          return <SuggestionItem key={i} suggestion={suggestion} />
+          return <SuggestionItem key={i} 
+          suggestion={suggestion} 
+          editMode={this.props.editMode}
+          handleDelete={this.props.handleDelete} />
       })
 
     return (
       <div>
         <h3>Choices</h3>
+        <button onClick={this.props.modeToggle}>Edit</button>
         {suggestionList}
       </div>
     )

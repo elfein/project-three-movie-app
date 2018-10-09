@@ -16,7 +16,8 @@ export default class OneEventPage extends Component {
             genre: '',
             minutes: ''
         },
-        showSuggestionForm: false
+        showSuggestionForm: false,
+        editMode: false
     }
 
     getEvent = async () => {
@@ -47,7 +48,7 @@ export default class OneEventPage extends Component {
     }
 
     handleChange = (event) => {
-        const newSuggest = {...this.state.newSuggest}
+        const newSuggest = { ...this.state.newSuggest }
         newSuggest[event.target.name] = event.target.value
         this.setState({ newSuggest })
     }
@@ -58,6 +59,17 @@ export default class OneEventPage extends Component {
         console.log('creating?')
         await axios.post(`/api/events/${eventId}/movies`, this.state.newSuggest)
         await this.getEvent()
+        this.setState({ showSuggestionForm: false })
+    }
+
+    handleDelete = async (movieId) => {
+        const eventId = this.props.match.params.eventId
+        await axios.delete(`/api/events/${eventId}/movies/${movieId}`)
+        await this.getEvent()
+    }
+
+    modeToggle = () => {
+        this.setState({ editMode: !this.state.editMode })
     }
 
     render() {
@@ -77,14 +89,18 @@ export default class OneEventPage extends Component {
                 </div>
                 <FeatureContainer feature={this.state.event.feature} />
                 <div>
-                    <SuggestionList suggestions={this.state.event.suggestions} />
+                    <SuggestionList
+                        modeToggle={this.modeToggle}
+                        suggestions={this.state.event.suggestions}
+                        editMode={this.state.editMode}
+                        handleDelete={this.handleDelete} />
                     {this.state.showSuggestionForm ?
                         <div>
                             <button onClick={this.onClick} >Cancel</button>
-                            <NewSuggestionForm 
-                            newSuggest={this.state.newSuggest}
-                            handleChange={this.handleChange}
-                            handleSubmit={this.handleSubmit} />
+                            <NewSuggestionForm
+                                newSuggest={this.state.newSuggest}
+                                handleChange={this.handleChange}
+                                handleSubmit={this.handleSubmit} />
                         </div> :
                         <button onClick={this.onClick} >Add Suggestion</button>}
                 </div>
