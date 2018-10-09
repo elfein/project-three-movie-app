@@ -38,7 +38,6 @@ export default class EventsPage extends Component {
     handleSubmit = async (event) => {
         event.preventDefault()
         const response = await axios.post('/api/events', this.state.newEvent)
-        console.log(response)
         const events = [...this.state.events]
         events.push(response.data)
         this.setState({ events })
