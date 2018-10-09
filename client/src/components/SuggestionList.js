@@ -15,6 +15,7 @@ export default class SuggestionList extends Component {
 
     return (
       <div>
+        <h3>Choices</h3>
         {suggestionList}
       </div>
     )
