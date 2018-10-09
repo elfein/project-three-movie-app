@@ -1,32 +1,57 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
+import Axios from 'axios';
 import NavBar from './NavBar';
-import axios from 'axios'
-import EventItem from './EventItem';
+import EventInfoBar from './EventInfoBar';
+import FeatureContainer from './FeatureContainer';
+import SuggestionList from './SuggestionList';
 
-export default class Eventpage extends Component {
+export default class EventPage extends Component {
     state = {
-        events: []
+        event: {},
+        attendees: []
     }
 
-    getEvents = async () => {
-        const response = await axios.get('/api/events')
-        this.setState({ events: response.data })
+    getEvent = async () => {
+        const eventId = this.props.match.params.id
+        const event = await Axios.get(`/api/events/${eventId}`)
+        this.setState({ event: event.data })
     }
 
-    componentDidMount = () => {
-        this.getEvents()
+    componentDidMount = async () => {
+        await this.getEvent()
+        await this.getAttendees()
     }
 
-
+    getAttendees = async () => {
+        const attendees = [...this.state.attendees]
+        this.state.event.suggestions.forEach(suggestion => {
+            suggestion.supporters.forEach(supporter => {
+                if (attendees.indexOf(supporter.name)) {
+                    attendees.push(supporter.name)
+                }
+            })
+        })
+        this.setState({ attendees })
+    }
 
     render() {
-        const eventList = this.state.events.map((event, i) => {
-            return <EventItem key ={i} name={event.name} date={event.date} />
+        const attendeeList = this.state.attendees.map((attendee, i) => {
+            return <li key={i}>{attendee}</li>
         })
+
         return (
             <div>
-                <NavBar title={'All Movie Nights'} />
-                {eventList}
+                <NavBar title={this.state.event.name} />
+                <div>
+                    <EventInfoBar
+                        date={this.state.event.date}
+                        about={this.state.event.about} />
+                    <ul>{attendeeList}</ul>
+                    <Link to={`/events/${this.props.match.params.id}/edit`}>Edit</Link>
+                </div>
+                <FeatureContainer feature={this.state.event.feature} />
+                <SuggestionList suggestions={this.state.event.suggestions} />
             </div>
         )
     }

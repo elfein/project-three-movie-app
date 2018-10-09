@@ -8,6 +8,10 @@ router.get('/', async (req, res) => {
 })
 
 // Show One
+router.get('/:id', async (req, res) => {
+    const event = await Event.findById(req.params.id)
+    res.send(event)
+})
 
 // Create
 

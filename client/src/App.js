@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import Splash from './components/Splash';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Eventpage from './components/Eventpage';
+import Splash from './components/Splash';
+import EventsPage from './components/EventsPage';
+import EventPage from './components/EventPage';
 
 class App extends Component {
   render() {
@@ -10,7 +11,8 @@ class App extends Component {
         <Router>
           <Switch>
             <Route exact path='/' component={ Splash } />
-            <Route exact path='/events' component={ Eventpage } />
+            <Route exact path='/events/:id' component={ EventPage } />
+            <Route exact path='/events' component={ EventsPage } />
           </Switch>
         </Router>
       </div>
