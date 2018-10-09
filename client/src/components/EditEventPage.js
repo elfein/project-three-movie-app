@@ -17,7 +17,7 @@ export default class EditEventPage extends Component {
     }
 
     getEvent = async () => {
-        const eventId = this.props.match.params.id
+        const eventId = this.props.match.params.eventId
         const event = await axios.get(`/api/events/${eventId}`)
         this.setState({ event: event.data })
     }
@@ -27,7 +27,7 @@ export default class EditEventPage extends Component {
     }
 
     deleteEvent = async () => {
-        await axios.delete(`/api/events/${this.props.match.params.id}`)
+        await axios.delete(`/api/events/${this.props.match.params.eventId}`)
     }
 
     handleChange = (event) => {
@@ -38,14 +38,14 @@ export default class EditEventPage extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
-        await axios.put(`/api/events/${this.props.match.params.id}`, this.state.event)
+        await axios.put(`/api/events/${this.props.match.params.eventId}`, this.state.event)
         this.setState({ showMessage: true })
         setTimeout(() => {this.setState({ redirect: true })}, 1000)
     }
 
     render() {
         if (this.state.redirect) {
-            return (<Redirect to={`/events/${this.props.match.params.id}`}/>)
+            return (<Redirect to={`/events/${this.props.match.params.eventId}`}/>)
         }
 
         return (
@@ -56,7 +56,7 @@ export default class EditEventPage extends Component {
                     handleSubmit={this.handleSubmit}
                     handleChange={(event) => this.handleChange(event)}
                     event={this.state.event} />
-                <Link to={`/events/${this.props.match.params.id}`}>Cancel</Link>
+                <Link to={`/events/${this.props.match.params.eventId}`}>Cancel</Link>
                 {this.state.showMessage ? 
                 <h3>Event updated!</h3> :
                 null}

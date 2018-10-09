@@ -1,20 +1,27 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
-import Axios from 'axios';
+import axios from 'axios';
 import NavBar from './NavBar';
 import EventInfoBar from './EventInfoBar';
 import FeatureContainer from './FeatureContainer';
 import SuggestionList from './SuggestionList';
+import NewSuggestionForm from './NewSuggestionForm';
 
-export default class EventPage extends Component {
+export default class OneEventPage extends Component {
     state = {
         event: {},
-        attendees: []
+        attendees: [],
+        newSuggest: {
+            name: '',
+            genre: '',
+            minutes: ''
+        },
+        showSuggestionForm: false
     }
 
     getEvent = async () => {
-        const eventId = this.props.match.params.id
-        const event = await Axios.get(`/api/events/${eventId}`)
+        const eventId = this.props.match.params.eventId
+        const event = await axios.get(`/api/events/${eventId}`)
         this.setState({ event: event.data })
     }
 
@@ -35,6 +42,24 @@ export default class EventPage extends Component {
         this.setState({ attendees })
     }
 
+    onClick = () => {
+        this.setState({ showSuggestionForm: !this.state.showSuggestionForm })
+    }
+
+    handleChange = (event) => {
+        const newSuggest = {...this.state.newSuggest}
+        newSuggest[event.target.name] = event.target.value
+        this.setState({ newSuggest })
+    }
+
+    handleSubmit = async (event) => {
+        event.preventDefault()
+        const eventId = this.props.match.params.eventId
+        console.log('creating?')
+        await axios.post(`/api/events/${eventId}/movies`, this.state.newSuggest)
+        await this.getEvent()
+    }
+
     render() {
         const attendeeList = this.state.attendees.map((attendee, i) => {
             return <li key={i}>{attendee}</li>
@@ -48,10 +73,21 @@ export default class EventPage extends Component {
                         date={this.state.event.date}
                         about={this.state.event.about} />
                     <ul>{attendeeList}</ul>
-                    <Link to={`/events/${this.props.match.params.id}/edit`}>Edit</Link>
+                    <Link to={`/events/${this.props.match.params.eventId}/edit`}>Edit</Link>
                 </div>
                 <FeatureContainer feature={this.state.event.feature} />
-                <SuggestionList suggestions={this.state.event.suggestions} />
+                <div>
+                    <SuggestionList suggestions={this.state.event.suggestions} />
+                    {this.state.showSuggestionForm ?
+                        <div>
+                            <button onClick={this.onClick} >Cancel</button>
+                            <NewSuggestionForm 
+                            newSuggest={this.state.newSuggest}
+                            handleChange={this.handleChange}
+                            handleSubmit={this.handleSubmit} />
+                        </div> :
+                        <button onClick={this.onClick} >Add Suggestion</button>}
+                </div>
             </div>
         )
     }

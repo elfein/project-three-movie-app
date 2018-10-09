@@ -4,7 +4,7 @@ export default class NewEventForm extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={(event) => this.props.handleSubmit(event)} >
+        <form onSubmit={this.props.handleSubmit} >
             <input 
             placeholder='Event Name'
             type='text'

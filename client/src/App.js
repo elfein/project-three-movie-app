@@ -13,8 +13,8 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={ Splash } />
             <Route exact path='/events' component={ EventsPage } />
-            <Route exact path='/events/:id' component={ OneEventPage } />
-            <Route exact path='/events/:id/edit' component={ EditEventPage } />
+            <Route exact path='/events/:eventId' component={ OneEventPage } />
+            <Route exact path='/events/:eventId/edit' component={ EditEventPage } />
           </Switch>
         </Router>
       </div>
