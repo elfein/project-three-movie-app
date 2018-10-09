@@ -22,5 +22,9 @@ router.post('/', async (req, res) => {
 // Update
 
 // Delete
+router.delete('/:id', async (req, res) => {
+    await Event.findByIdAndRemove(req.params.id)
+    res.sendStatus(200)
+})
 
 module.exports = router
