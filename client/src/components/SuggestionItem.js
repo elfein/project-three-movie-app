@@ -8,10 +8,16 @@ export default class SuggestionItem extends Component {
         showUserForm: false
     }
 
-    checkUser = () => {
+    checkUser = (event) => {
         if (this.props.currentUser.name === '') {
             this.setState({ showUserForm: true })
+        } else {
+            this.props.handleUserSubmit(event, this.props.suggestion._id)
         }
+    }
+
+    toggleShowForm = () => {
+        this.setState({ showUserForm: false })
     }
 
     render() {
@@ -35,18 +41,19 @@ export default class SuggestionItem extends Component {
                 <h4>Votes: {this.props.suggestion.supporters.length}</h4>
                 
                 <ul>{supporterList}</ul>
-                
-                <button onClick={this.checkUser}>Vote</button>
+
                 {this.state.showUserForm ? 
                 <div>
+                    <button onClick={this.toggleShowForm}>Cancel</button>
                     <p>You need to attend this event in order to vote!</p>
                     <p>Join the list of attendees:</p>
                     <NewUserForm 
+                    suggestion={this.props.suggestion}
                     handleUserChange={this.props.handleUserChange}
                     handleUserSubmit={this.props.handleUserSubmit}
                     currentUser={this.props.currentUser} />
                 </div> : 
-                null }
+                <button onClick={this.checkUser}>Vote</button> }
             </div>
         )
     }

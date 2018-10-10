@@ -57,13 +57,25 @@ export default class OneEventPage extends Component {
         this.setState({ newSuggest })
     }
 
+    handleUserChange = (event) => {
+        const currentUser = { ...this.state.currentUser }
+        currentUser[event.target.name] = event.target.value
+        this.setState({ currentUser })
+    }
+
     handleSubmit = async (event) => {
         event.preventDefault()
         const eventId = this.props.match.params.eventId
-        console.log('creating?')
         await axios.post(`/api/events/${eventId}/movies`, this.state.newSuggest)
         await this.getEvent()
         this.setState({ showSuggestionForm: false })
+    }
+
+    handleUserSubmit = async (event, movieId) => {
+        event.preventDefault()
+        const eventId = this.props.match.params.eventId
+        await axios.post(`/api/events/${eventId}/movies/${movieId}/voters`, this.state.currentUser)
+        await this.getEvent()
     }
 
     handleDelete = async (movieId) => {
@@ -99,8 +111,8 @@ export default class OneEventPage extends Component {
                         suggestions={this.state.event.suggestions}
                         editMode={this.state.editMode}
                         handleDelete={this.handleDelete}
-                        handleUserChange={this.props.handleUserChange}
-                        handleUserSubmit={this.props.handleUserSubmit} />
+                        handleUserChange={this.handleUserChange}
+                        handleUserSubmit={this.handleUserSubmit} />
                     {this.state.showSuggestionForm ?
                         <div>
                             <button onClick={this.onClick} >Cancel</button>
