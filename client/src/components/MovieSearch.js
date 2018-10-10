@@ -90,7 +90,7 @@ export default class MovieSearch extends Component {
 
     searchClick = async () => {
         await this.getQuery()
-        const response = await Axios.get(`https://api.themoviedb.org/3/search/movie?api_key=8b6d224ef9e9fbffddb5a60cef3bfb9c&query=${this.state.query}`)
+        const response = await Axios.get(`https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_API_KEY}&query=${this.state.query}`)
         await this.setState({ results: response.data.results })
     }
 

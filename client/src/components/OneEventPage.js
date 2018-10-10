@@ -94,19 +94,16 @@ export default class OneEventPage extends Component {
         newSuggest.img = movieImage
         newSuggest.genre = movieGenre
         await this.setState({ newSuggest })
-        console.log(this.state.newSuggest)
         this.handleSubmitNotForm()
     }
 
     handleSubmit = (event) => {
         event.preventDefault()
-        console.log(this.state.newSuggest)
         this.handleSubmitNotForm()
     }
 
     handleSubmitNotForm = async () => {
         const eventId = this.props.match.params.eventId
-        console.log(this.state.newSuggest)
         await axios.post(`/api/events/${eventId}/movies`, this.state.newSuggest)
         await this.getEvent()
         this.onClick()
