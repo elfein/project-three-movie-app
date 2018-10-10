@@ -31,6 +31,7 @@ export default class OneEventPage extends Component {
         const eventId = this.props.match.params.eventId
         const event = await axios.get(`/api/events/${eventId}`)
         this.setState({ event: event.data })
+        this.tallyVotes()
     }
 
     componentDidMount = async () => {
@@ -48,6 +49,26 @@ export default class OneEventPage extends Component {
             })
         })
         this.setState({ attendees })
+    }
+
+    tallyVotes = () => {
+        const event = {...this.state.event}
+        if (event.suggestions) {
+            // find suggestion with greatest supporters.length
+            // set 'most supported'
+            let mostSupported = {supporters: []}
+            // go through suggestions, comparing mostsupported.supporters.length to next one
+            event.suggestions.forEach(suggestion => {
+                if (mostSupported.supporters.length < suggestion.supporters.length) {
+                    // if next one is greater, mostsupported = next one
+                    mostSupported = suggestion
+                }
+            })
+            // return most supported
+            //then set event.feature to most supported
+            event.feature = mostSupported
+            this.setState({ event })
+        }
     }
 
     onClick = () => {
