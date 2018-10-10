@@ -17,7 +17,11 @@ export default class OneEventPage extends Component {
             minutes: ''
         },
         showSuggestionForm: false,
-        editMode: false
+        editMode: false,
+        currentUser: {
+            name: '',
+            image: 'https://www.caretechfoundation.org.uk/wp-content/uploads/anonymous-person-221117.jpg'
+        }
     }
 
     getEvent = async () => {
@@ -90,10 +94,13 @@ export default class OneEventPage extends Component {
                 <FeatureContainer feature={this.state.event.feature} />
                 <div>
                     <SuggestionList
+                        currentUser={this.state.currentUser}
                         modeToggle={this.modeToggle}
                         suggestions={this.state.event.suggestions}
                         editMode={this.state.editMode}
-                        handleDelete={this.handleDelete} />
+                        handleDelete={this.handleDelete}
+                        handleUserChange={this.props.handleUserChange}
+                        handleUserSubmit={this.props.handleUserSubmit} />
                     {this.state.showSuggestionForm ?
                         <div>
                             <button onClick={this.onClick} >Cancel</button>
