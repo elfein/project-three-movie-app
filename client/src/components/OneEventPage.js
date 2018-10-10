@@ -54,7 +54,7 @@ export default class OneEventPage extends Component {
 
     tallyVotes = () => {
         const event = { ...this.state.event }
-        if (event.suggestions) {
+        if (event.suggestions[0]) {
             // find suggestion with greatest supporters.length
             // set 'most supported'
             let mostSupported = { supporters: [] }
