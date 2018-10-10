@@ -24,11 +24,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(__dirname + '/client/build'));
 
-// root index
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/client/build/index.html')
-})
-
 // app.use('/users', usersRouter);
 const eventsController = require('./routes/eventsController')
 const moviesController = require('./routes/moviesController')
@@ -37,5 +32,10 @@ const votersController = require('./routes/votersController')
 app.use('/api/events', eventsController)
 app.use('/api/events/:eventId/movies', moviesController)
 app.use('/api/events/:eventId/movies/:movieId/voters', votersController)
+
+// root index
+app.get('/*', (req, res) => {
+    res.sendFile(__dirname + '/client/build/index.html')
+})
 
 module.exports = app;
