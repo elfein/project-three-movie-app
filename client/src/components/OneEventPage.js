@@ -43,8 +43,8 @@ export default class OneEventPage extends Component {
         const attendees = [...this.state.attendees]
         this.state.event.suggestions.forEach(suggestion => {
             suggestion.supporters.forEach(supporter => {
-                if (!attendees.find((supporterName) => supporterName === supporter.name)) {
-                    attendees.push(supporter.name)
+                if (!attendees.find((listedSupporter) => listedSupporter.name === supporter.name)) {
+                    attendees.push(supporter)
                 }
             })
         })
@@ -88,7 +88,7 @@ export default class OneEventPage extends Component {
     }
 
     addSearchSuggestion = async (movieName, movieImage, movieGenre) => {
-        const newSuggest = {...this.state.newSuggest}
+        const newSuggest = { ...this.state.newSuggest }
         newSuggest.name = movieName
         newSuggest.img = movieImage
         newSuggest.genre = movieGenre
@@ -133,7 +133,10 @@ export default class OneEventPage extends Component {
 
     render() {
         const attendeeList = this.state.attendees.map((attendee, i) => {
-            return <li key={i}>{attendee}</li>
+            return <div key={i}>
+                <img style={{width: 30 + 'px'}} src={attendee.image} alt='attendee profile' />
+                <span>{attendee.name}</span>
+                </div>
         })
 
         return (
