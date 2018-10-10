@@ -19,7 +19,6 @@ export default class OneEventPage extends Component {
             minutes: ''
         },
         showSuggestionForm: false,
-        showUserForm: false,
         editMode: false,
         currentUser: {
             name: '',
@@ -52,11 +51,11 @@ export default class OneEventPage extends Component {
     }
 
     tallyVotes = () => {
-        const event = {...this.state.event}
+        const event = { ...this.state.event }
         if (event.suggestions) {
             // find suggestion with greatest supporters.length
             // set 'most supported'
-            let mostSupported = {supporters: []}
+            let mostSupported = { supporters: [] }
             // go through suggestions, comparing mostsupported.supporters.length to next one
             event.suggestions.forEach(suggestion => {
                 if (mostSupported.supporters.length < suggestion.supporters.length) {
@@ -115,10 +114,6 @@ export default class OneEventPage extends Component {
         this.setState({ editMode: !this.state.editMode })
     }
 
-    toggleShowForm = () => {
-        this.setState({ showUserForm: !this.state.showUserForm })
-    }
-
     render() {
         const attendeeList = this.state.attendees.map((attendee, i) => {
             return <li key={i}>{attendee}</li>
@@ -137,8 +132,6 @@ export default class OneEventPage extends Component {
                 <FeatureContainer feature={this.state.event.feature} />
                 <div>
                     <SuggestionList
-                        toggleShowForm={this.toggleShowForm}
-                        showUserForm={this.state.showUserForm}
                         currentUser={this.state.currentUser}
                         modeToggle={this.modeToggle}
                         suggestions={this.state.event.suggestions}

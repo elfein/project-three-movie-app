@@ -12,7 +12,6 @@ export default class SuggestionList extends Component {
       const suggestionList = suggestionArr.map((suggestion, i) => {
           return <SuggestionItem key={i} 
           toggleShowForm={this.props.toggleShowForm}
-          showUserForm={this.props.showUserForm}
           currentUser={this.props.currentUser}
           suggestion={suggestion} 
           editMode={this.props.editMode}

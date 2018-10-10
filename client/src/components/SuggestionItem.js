@@ -5,19 +5,25 @@ import NewUserForm from './NewUserForm';
 
 export default class SuggestionItem extends Component {
     state = {
-        showAlreadyVoted: false
+        showAlreadyVoted: false,
+        showUserForm: false,
     }
 
     checkUser = (event) => {
         if (this.props.currentUser.name === '') {
-            this.props.toggleShowForm()
+            this.toggleShowForm()
         } else {
             if (!this.props.suggestion.supporters.find((voter) => voter.name === this.props.currentUser.name)) {
                 this.props.handleUserSubmit(event, this.props.suggestion._id)
             } else {
                 this.setState({ showAlreadyVoted: true })
+                setTimeout(() => {this.setState({ showAlreadyVoted: false })}, 2000)
             }
         }
+    }
+
+    toggleShowForm = () => {
+        this.setState({ showUserForm: !this.state.showUserForm })
     }
 
     render() {
@@ -42,13 +48,13 @@ export default class SuggestionItem extends Component {
 
                 <ul>{supporterList}</ul>
 
-                {this.props.showUserForm ?
+                {this.state.showUserForm ?
                     <div>
-                        <button onClick={this.props.toggleShowForm}>Cancel</button>
+                        <button onClick={this.toggleShowForm}>Cancel</button>
                         <p>You need to attend this event in order to vote!</p>
                         <p>Join the list of attendees:</p>
                         <NewUserForm
-                            toggleShowForm={this.props.toggleShowForm}
+                            toggleShowForm={this.toggleShowForm}
                             suggestion={this.props.suggestion}
                             handleUserChange={this.props.handleUserChange}
                             handleUserSubmit={this.props.handleUserSubmit}

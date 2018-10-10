@@ -1,9 +1,15 @@
 import React, { Component } from 'react'
 
 export default class NewUserForm extends Component {
+
+    doSubmit = (event, movieId) => {
+        this.props.handleUserSubmit(event, movieId)
+        this.props.toggleShowForm()
+    }
+
     render() {
         return (
-            <form onSubmit={(event) => this.props.handleUserSubmit(event, this.props.suggestion._id)} >
+            <form onSubmit={(event) => this.doSubmit(event, this.props.suggestion._id)} >
                 <input
                     placeholder='Your Name'
                     type='text'
