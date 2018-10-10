@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import NewSuggestionForm from './NewSuggestionForm';
+import MovieSearch from './MovieSearch';
 
 export default class SuggestionChoice extends Component {
     state = {
@@ -34,7 +35,8 @@ export default class SuggestionChoice extends Component {
                 {this.state.searchCase ?
                     <div>
                         <button onClick={this.chooseChoice} >Cancel</button>
-                        <p>search!</p>
+                        <MovieSearch
+                        addSearchSuggestion={this.props.addSearchSuggestion} />
                     </div> :
                     null}
                 {this.state.inputCase ?

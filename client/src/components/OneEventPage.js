@@ -16,7 +16,8 @@ export default class OneEventPage extends Component {
         newSuggest: {
             name: '',
             genre: '',
-            minutes: ''
+            minutes: '',
+            img: ''
         },
         showSuggestionForm: false,
         editMode: false,
@@ -86,9 +87,25 @@ export default class OneEventPage extends Component {
         this.setState({ currentUser })
     }
 
-    handleSubmit = async (event) => {
+    addSearchSuggestion = async (movieName, movieImage, movieGenre) => {
+        const newSuggest = {...this.state.newSuggest}
+        newSuggest.name = movieName
+        newSuggest.img = movieImage
+        newSuggest.genre = movieGenre
+        await this.setState({ newSuggest })
+        console.log(this.state.newSuggest)
+        this.handleSubmitNotForm()
+    }
+
+    handleSubmit = (event) => {
         event.preventDefault()
+        console.log(this.state.newSuggest)
+        this.handleSubmitNotForm()
+    }
+
+    handleSubmitNotForm = async () => {
         const eventId = this.props.match.params.eventId
+        console.log(this.state.newSuggest)
         await axios.post(`/api/events/${eventId}/movies`, this.state.newSuggest)
         await this.getEvent()
         this.onClick()
@@ -141,6 +158,7 @@ export default class OneEventPage extends Component {
                         handleUserSubmit={this.handleUserSubmit} />
                     {this.state.showSuggestionForm ?
                         <SuggestionChoice
+                            addSearchSuggestion={this.addSearchSuggestion}
                             clickHandle={this.onClick}
                             newSuggest={this.state.newSuggest}
                             handleChange={this.handleChange}

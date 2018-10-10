@@ -23,14 +23,6 @@ export default class NewSuggestionForm extends Component {
           />
 
           <input
-            placeholder='Runtime in Minutes'
-            type='number'
-            name='minutes'
-            value={this.props.newSuggest.minutes}
-            onChange={this.props.handleChange}
-          />
-
-          <input
             placeholder='Image Address'
             type='text'
             name='img'

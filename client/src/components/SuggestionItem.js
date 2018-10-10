@@ -42,7 +42,6 @@ export default class SuggestionItem extends Component {
                     null}
 
                 <h6>Genre: {this.props.suggestion.genre}</h6>
-                <h6>Runtime: {this.props.suggestion.minutes} minutes</h6>
 
                 <h4>Votes: {this.props.suggestion.supporters.length}</h4>
 
