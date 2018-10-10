@@ -5,7 +5,7 @@ import NavBar from './NavBar';
 import EventInfoBar from './EventInfoBar';
 import FeatureContainer from './FeatureContainer';
 import SuggestionList from './SuggestionList';
-import NewSuggestionForm from './NewSuggestionForm';
+import SuggestionChoice from './SuggestionChoice';
 
 export default class OneEventPage extends Component {
     state = {
@@ -140,13 +140,12 @@ export default class OneEventPage extends Component {
                         handleUserChange={this.handleUserChange}
                         handleUserSubmit={this.handleUserSubmit} />
                     {this.state.showSuggestionForm ?
-                        <div>
-                            <button onClick={this.onClick} >Cancel</button>
-                            <NewSuggestionForm
-                                newSuggest={this.state.newSuggest}
-                                handleChange={this.handleChange}
-                                handleSubmit={this.handleSubmit} />
-                        </div> :
+                        <SuggestionChoice
+                            clickHandle={this.onClick}
+                            newSuggest={this.state.newSuggest}
+                            handleChange={this.handleChange}
+                            handleSubmit={this.handleSubmit} />
+                        :
                         <button onClick={this.onClick} >Add Suggestion</button>}
                 </div>
             </div>
