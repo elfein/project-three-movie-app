@@ -9,7 +9,9 @@ import NewSuggestionForm from './NewSuggestionForm';
 
 export default class OneEventPage extends Component {
     state = {
-        event: {},
+        event: {
+            suggestions: []
+        },
         attendees: [],
         newSuggest: {
             name: '',
@@ -17,6 +19,7 @@ export default class OneEventPage extends Component {
             minutes: ''
         },
         showSuggestionForm: false,
+        showUserForm: false,
         editMode: false,
         currentUser: {
             name: '',
@@ -39,7 +42,7 @@ export default class OneEventPage extends Component {
         const attendees = [...this.state.attendees]
         this.state.event.suggestions.forEach(suggestion => {
             suggestion.supporters.forEach(supporter => {
-                if (attendees.indexOf(supporter.name)) {
+                if (!attendees.find((supporterName) => supporterName === supporter.name)) {
                     attendees.push(supporter.name)
                 }
             })
@@ -68,7 +71,7 @@ export default class OneEventPage extends Component {
         const eventId = this.props.match.params.eventId
         await axios.post(`/api/events/${eventId}/movies`, this.state.newSuggest)
         await this.getEvent()
-        this.setState({ showSuggestionForm: false })
+        this.onClick()
     }
 
     handleUserSubmit = async (event, movieId) => {
@@ -76,16 +79,23 @@ export default class OneEventPage extends Component {
         const eventId = this.props.match.params.eventId
         await axios.post(`/api/events/${eventId}/movies/${movieId}/voters`, this.state.currentUser)
         await this.getEvent()
+        await this.getAttendees()
+        this.setState({ showUserForm: false })
     }
 
     handleDelete = async (movieId) => {
         const eventId = this.props.match.params.eventId
         await axios.delete(`/api/events/${eventId}/movies/${movieId}`)
         await this.getEvent()
+        await this.getAttendees()
     }
 
     modeToggle = () => {
         this.setState({ editMode: !this.state.editMode })
+    }
+
+    toggleShowForm = () => {
+        this.setState({ showUserForm: !this.state.showUserForm })
     }
 
     render() {
@@ -106,6 +116,8 @@ export default class OneEventPage extends Component {
                 <FeatureContainer feature={this.state.event.feature} />
                 <div>
                     <SuggestionList
+                        toggleShowForm={this.toggleShowForm}
+                        showUserForm={this.state.showUserForm}
                         currentUser={this.state.currentUser}
                         modeToggle={this.modeToggle}
                         suggestions={this.state.event.suggestions}
