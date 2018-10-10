@@ -6,6 +6,7 @@ import EventInfoBar from './EventInfoBar';
 import FeatureContainer from './FeatureContainer';
 import SuggestionList from './SuggestionList';
 import SuggestionChoice from './SuggestionChoice';
+import AttendeeList from './AttendeeList';
 
 export default class OneEventPage extends Component {
     state = {
@@ -132,12 +133,6 @@ export default class OneEventPage extends Component {
     }
 
     render() {
-        const attendeeList = this.state.attendees.map((attendee, i) => {
-            return <div key={i}>
-                <img style={{width: 30 + 'px'}} src={attendee.image} alt='attendee profile' />
-                <span>{attendee.name}</span>
-                </div>
-        })
 
         return (
             <div>
@@ -146,7 +141,7 @@ export default class OneEventPage extends Component {
                     <EventInfoBar
                         date={this.state.event.date}
                         about={this.state.event.about} />
-                    <ul>{attendeeList}</ul>
+                    <AttendeeList attendees={this.state.attendees} />
                     <Link to={`/events/${this.props.match.params.eventId}/edit`}>Edit</Link>
                 </div>
                 <FeatureContainer feature={this.state.event.feature} />
