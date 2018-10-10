@@ -103,11 +103,6 @@ export default class MovieSearch extends Component {
         this.setState({ typedQuery: event.target.value })
     }
 
-    // componentDidMount = async () => {
-    //     const response = await Axios.get(`https://api.themoviedb.org/3/search/movie?api_key=8b6d224ef9e9fbffddb5a60cef3bfb9c&query=${this.state.query}`)
-    //     console.log(response)
-    // }
-
     render() {
 
         let allResults = []
@@ -118,7 +113,6 @@ export default class MovieSearch extends Component {
                 if (movie.genre_ids[0]) {
                 movieGenre =
                 (this.genres.find(genre => genre.id === movie.genre_ids[0])).name }
-                console.log(movieGenre)
                 return <Result
                     addSearchSuggestion={this.props.addSearchSuggestion}
                     name={movie.title}
