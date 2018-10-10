@@ -30,7 +30,7 @@ export default class EventsPage extends Component {
     }
 
     handleChange = (event) => {
-        const newEvent = {...this.state.newEvent}
+        const newEvent = { ...this.state.newEvent }
         newEvent[event.target.name] = event.target.value
         this.setState({ newEvent })
     }
@@ -41,6 +41,15 @@ export default class EventsPage extends Component {
         const events = [...this.state.events]
         events.push(response.data)
         this.setState({ events })
+        this.clickHandler()
+        this.setState({
+            newEvent: {
+                name: '',
+                host: '',
+                date: '',
+                about: ''
+            }
+        })
     }
 
     render() {
@@ -55,15 +64,15 @@ export default class EventsPage extends Component {
             <div>
                 <NavBar title={'All Movie Nights'} />
                 {eventList}
-                {this.state.showNewForm ? 
-                <div>
-                <button onClick={this.clickHandler}>Cancel</button>
-                <NewEventForm
-                handleSubmit={this.handleSubmit}
-                handleChange={(event) => this.handleChange(event)}
-                newEvent={this.state.newEvent} />
-                </div> :
-                <button onClick={this.clickHandler}>Host a movie night!</button>}
+                {this.state.showNewForm ?
+                    <div>
+                        <button onClick={this.clickHandler}>Cancel</button>
+                        <NewEventForm
+                            handleSubmit={this.handleSubmit}
+                            handleChange={(event) => this.handleChange(event)}
+                            newEvent={this.state.newEvent} />
+                    </div> :
+                    <button onClick={this.clickHandler}>Host a movie night!</button>}
             </div>
         )
     }
