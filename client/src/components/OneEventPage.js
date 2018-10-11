@@ -136,7 +136,7 @@ export default class OneEventPage extends Component {
             name: '',
             genre: '',
             minutes: '',
-            img: ''
+            img: 'https://s.studiobinder.com/wp-content/uploads/2017/12/Movie-Poster-Template-Dark-with-Image.jpg?x81279'
         }})
     }
 
@@ -176,6 +176,7 @@ export default class OneEventPage extends Component {
                     <div id='all-info'>
                         <EventInfoBar
                             params={this.props.match.params}
+                            host={this.state.event.host}
                             date={this.state.event.date}
                             about={this.state.event.about} />
                         <h4>Attendee List</h4>

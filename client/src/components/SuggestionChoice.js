@@ -14,7 +14,8 @@ opacity: 1;
 z-index: 1010;
 padding: 30px;
 background: rgb(30,90,120);
-transition: transform 0.2s ease, opacity 0.2s ease;
+transition: transform 0.2s ease, opacity 0.2s ease, height 0.2s ease, width 0.2s ease;
+min-width: 300px;
 max-height: 100%;
 max-width: 100%;
 &.hidden {
