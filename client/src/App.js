@@ -5,11 +5,17 @@ import EventsPage from './components/EventsPage';
 import OneEventPage from './components/OneEventPage.js';
 import EditEventPage from './components/EditEventPage';
 import ErrorMessage from './components/ErrorMessage';
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+background-color: rgb(80,180,200);
+min-height: 100vh;
+`
 
 class App extends Component {
   render() {
     return (
-      <div>
+      <StyledDiv>
         <Router>
           <Switch>
             <Route exact path='/' component={ Splash } />
@@ -19,7 +25,7 @@ class App extends Component {
             <Route path='*' component={ ErrorMessage } />
           </Switch>
         </Router>
-      </div>
+      </StyledDiv>
     );
   }
 }

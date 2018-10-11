@@ -3,6 +3,14 @@ import NavBar from './NavBar';
 import axios from 'axios'
 import EventItem from './EventItem';
 import NewEventForm from './NewEventForm';
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+display: flex;
+flex-direction: column;
+align-items: center;
+text-align: center;
+`
 
 export default class EventsPage extends Component {
     state = {
@@ -61,19 +69,17 @@ export default class EventsPage extends Component {
         })
 
         return (
-            <div>
+            <StyledDiv>
                 <NavBar title={'All Movie Nights'} />
                 {eventList}
-                {this.state.showNewForm ?
-                    <div>
-                        <button onClick={this.clickHandler}>Cancel</button>
-                        <NewEventForm
-                            handleSubmit={this.handleSubmit}
-                            handleChange={(event) => this.handleChange(event)}
-                            newEvent={this.state.newEvent} />
-                    </div> :
-                    <button onClick={this.clickHandler}>Host a movie night!</button>}
-            </div>
+                <NewEventForm
+                    showNewForm={this.state.showNewForm}
+                    clickHandler={this.clickHandler}
+                    handleSubmit={this.handleSubmit}
+                    handleChange={(event) => this.handleChange(event)}
+                    newEvent={this.state.newEvent} />
+                <button onClick={this.clickHandler}>Host a movie night!</button>
+            </StyledDiv>
         )
     }
 }
