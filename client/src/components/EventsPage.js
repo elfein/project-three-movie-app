@@ -10,6 +10,22 @@ display: flex;
 flex-direction: column;
 align-items: center;
 text-align: center;
+button {
+    margin: 20px;
+    background: none;
+    color: #ffffff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 200;
+    font-size: 2em;
+    border-top: 1px solid rgba(255,255,255,.4);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    border-left: none;
+    border-right: none;
+    :hover {
+        transform: scale(1.02);
+        transition: transform ease 0.2s;
+    }
+}
 `
 
 export default class EventsPage extends Component {

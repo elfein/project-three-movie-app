@@ -10,6 +10,7 @@ import styled from 'styled-components'
 
 const StyledDiv = styled.div`
 main {
+    color: #ffffff;
     display: flex;
     justify-content: center;
     max-width: 96vw;
@@ -28,6 +29,9 @@ main {
 #suggest-btn {
     text-align: center;
     margin: 8px 0 30px 0;
+}
+a {
+    color: #fff;
 }
 @media (max-width: 760px) {
     main {

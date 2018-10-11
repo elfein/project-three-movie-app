@@ -6,10 +6,14 @@ import EditEventForm from './EditEventForm'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
+color: #ffffff;
     margin: 0 20vw;
 #delete {
     margin: 40px 0;
     display: block;
+}
+a {
+    color: #fff;
 }
 `
 

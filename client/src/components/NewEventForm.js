@@ -39,6 +39,7 @@ transform: scale(1.0) translate(-50%, -50%);
 `
 
 const StyledForm = styled.form`
+color: #fff;
 display: flex;
 flex-direction: column;
 align-content: center;
