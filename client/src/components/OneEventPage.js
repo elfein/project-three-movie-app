@@ -38,6 +38,17 @@ main {
         }
     }
 }
+@media only screen and (max-device-width: 480px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+    #all-info {
+        h2 {
+            text-align: center;
+        }
+    }
+}
 `
 
 export default class OneEventPage extends Component {

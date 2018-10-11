@@ -4,8 +4,8 @@ import styled from 'styled-components'
 const StyledDiv = styled.div`
 display: flex;
 img {
-  height: 300px;
-  margin: 0 20px;
+  height: 200px;
+  margin: 0 20px 0 0;
 }
 h3 {
   margin: 10px 0;
