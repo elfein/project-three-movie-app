@@ -30,7 +30,7 @@ export default class SplashLink extends Component {
     return (
       <StyledDiv>
         <Link to='/'><h3>S</h3></Link>
-        <Link id='events' to='/events'>See All Events</Link>
+        <Link id='events' to='/events'>Events</Link>
       </StyledDiv>
     )
   }
