@@ -12,6 +12,8 @@ const StyledDiv = styled.div`
 main {
     display: flex;
     justify-content: center;
+    max-width: 96vw;
+    margin: 0 auto;
 }
 #all-info {
     margin: 0 30px;
