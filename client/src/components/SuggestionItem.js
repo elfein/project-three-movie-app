@@ -1,7 +1,28 @@
 import React, { Component } from 'react'
 import NewUserForm from './NewUserForm';
+import styled from 'styled-components'
 
-
+const StyledDiv = styled.div`
+display: flex;
+padding: 20px;
+#movie-info {
+    margin: 0 15px;
+}
+h3, h4 {
+    margin: 0;
+}
+h6 {
+    margin: 10px 0;
+}
+ul {
+    padding: 0;
+    margin: 8px 0;
+}
+li {
+    display: inline;
+    margin: 0 8px 0 0;
+}
+`
 
 export default class SuggestionItem extends Component {
     state = {
@@ -32,9 +53,9 @@ export default class SuggestionItem extends Component {
         })
 
         return (
-            <div>
+            <StyledDiv>
                 <img height='100px' src={this.props.suggestion.img} alt='movie pic' />
-
+                <div id='movie-info'>
                 <h3>{this.props.suggestion.name}</h3>
 
                 {this.props.editMode ?
@@ -62,8 +83,8 @@ export default class SuggestionItem extends Component {
                     <button onClick={this.checkUser}>Vote</button>}
                     {this.state.showAlreadyVoted ?  
                     <p>You've already voted for this movie!</p> :
-                    null }
-            </div>
+                    null }</div>
+            </StyledDiv>
         )
     }
 }

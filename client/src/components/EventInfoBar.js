@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 
 export default class EventInfoBar extends Component {
 
@@ -6,12 +7,16 @@ export default class EventInfoBar extends Component {
 
         return (
             <div>
+                <h2>Information</h2>
+                <Link to={`/events/${this.props.params.eventId}/edit`}>Edit</Link>
+                <h4>Date</h4>
                 <h3>{this.props.date}</h3>
                 {this.props.about ?
-                    <p>{this.props.about}</p> :
+                    <div>
+                        <h4>About this Movie Night</h4>
+                        <p>{this.props.about}</p>
+                    </div> :
                     null}
-
-                {this.props.suggestions}
             </div>
         )
     }

@@ -1,5 +1,11 @@
 import React, { Component } from 'react'
 import AttendeeItem from './AttendeeItem';
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+display: flex;
+flex-wrap: wrap;
+`
 
 export default class AttendeeList extends Component {
     render() {
@@ -10,9 +16,9 @@ export default class AttendeeList extends Component {
         })
 
         return (
-            <div>
+            <StyledDiv>
                 {attendeeList}
-            </div>
+            </StyledDiv>
         )
     }
 }

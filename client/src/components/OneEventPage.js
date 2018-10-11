@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
 import axios from 'axios';
 import NavBar from './NavBar';
 import EventInfoBar from './EventInfoBar';
@@ -7,6 +6,39 @@ import FeatureContainer from './FeatureContainer';
 import SuggestionList from './SuggestionList';
 import SuggestionChoice from './SuggestionChoice';
 import AttendeeList from './AttendeeList';
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+main {
+    display: flex;
+    justify-content: center;
+}
+#all-info {
+    margin: 0 30px;
+    width: 300px;
+}
+#movies {
+    max-width: 600px;
+    h2 {
+        text-align: center;
+    }
+}
+#suggest-btn {
+    text-align: center;
+    margin: 8px 0 30px 0;
+}
+@media (max-width: 760px) {
+    main {
+        flex-direction: column;
+        align-items: center;
+    }
+    #all-info {
+        h2 {
+            text-align: center;
+        }
+    }
+}
+`
 
 export default class OneEventPage extends Component {
     state = {
@@ -18,7 +50,7 @@ export default class OneEventPage extends Component {
             name: '',
             genre: '',
             minutes: '',
-            img: ''
+            img: 'https://s.studiobinder.com/wp-content/uploads/2017/12/Movie-Poster-Template-Dark-with-Image.jpg?x81279'
         },
         showSuggestionForm: false,
         editMode: false,
@@ -100,6 +132,12 @@ export default class OneEventPage extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.handleSubmitNotForm()
+        this.setState({ newSuggest: {
+            name: '',
+            genre: '',
+            minutes: '',
+            img: ''
+        }})
     }
 
     handleSubmitNotForm = async () => {
@@ -132,36 +170,40 @@ export default class OneEventPage extends Component {
     render() {
 
         return (
-            <div>
+            <StyledDiv>
                 <NavBar title={this.state.event.name} />
-                <div>
-                    <EventInfoBar
-                        date={this.state.event.date}
-                        about={this.state.event.about} />
-                    <AttendeeList attendees={this.state.attendees} />
-                    <Link to={`/events/${this.props.match.params.eventId}/edit`}>Edit</Link>
-                </div>
-                <FeatureContainer feature={this.state.event.feature} />
-                <div>
-                    <SuggestionList
-                        currentUser={this.state.currentUser}
-                        modeToggle={this.modeToggle}
-                        suggestions={this.state.event.suggestions}
-                        editMode={this.state.editMode}
-                        handleDelete={this.handleDelete}
-                        handleUserChange={this.handleUserChange}
-                        handleUserSubmit={this.handleUserSubmit} />
-                    {this.state.showSuggestionForm ?
+                <main>
+                    <div id='all-info'>
+                        <EventInfoBar
+                            params={this.props.match.params}
+                            date={this.state.event.date}
+                            about={this.state.event.about} />
+                        <h4>Attendee List</h4>
+                        <AttendeeList attendees={this.state.attendees} />
+                    </div>
+                    <div id="movies">
+                        <FeatureContainer feature={this.state.event.feature} />
+                        <SuggestionList
+                            currentUser={this.state.currentUser}
+                            modeToggle={this.modeToggle}
+                            suggestions={this.state.event.suggestions}
+                            editMode={this.state.editMode}
+                            handleDelete={this.handleDelete}
+                            handleUserChange={this.handleUserChange}
+                            handleUserSubmit={this.handleUserSubmit} />
                         <SuggestionChoice
+                            showSuggestionForm={this.state.showSuggestionForm}
                             addSearchSuggestion={this.addSearchSuggestion}
-                            clickHandle={this.onClick}
+                            clickHandler={this.onClick}
                             newSuggest={this.state.newSuggest}
                             handleChange={this.handleChange}
                             handleSubmit={this.handleSubmit} />
-                        :
-                        <button onClick={this.onClick} >Add Suggestion</button>}
-                </div>
-            </div>
+                    <div id='suggest-btn'>
+                        <button onClick={this.onClick} >Add Suggestion</button>
+                    </div>
+                    </div>
+                </main>
+            </StyledDiv>
         )
     }
 }

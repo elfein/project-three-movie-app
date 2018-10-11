@@ -1,11 +1,34 @@
 import React, { Component } from 'react'
+import styled from 'styled-components'
+
+const StyledDiv = styled.div`
+button{
+  margin: 0 auto;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+input {
+  display: block;
+  margin: 8px;
+}
+`
 
 export default class NewSuggestionForm extends Component {
+
+  clearAndSubmit = (event) => {
+    this.props.chooseChoice()
+    this.props.handleSubmit(event)
+    document.getElementById('img').setAttribute('value', '')
+  }
+
   render() {
     return (
-      <div>
+      <StyledDiv>
         <button onClick={this.props.chooseChoice} >Cancel</button>
-        <form onSubmit={this.props.handleSubmit} >
+        <form onSubmit={this.clearAndSubmit} >
           <input
             placeholder='Movie Name'
             type='text'
@@ -23,6 +46,7 @@ export default class NewSuggestionForm extends Component {
           />
 
           <input
+            id='img'
             placeholder='Image Address'
             type='text'
             name='img'
@@ -31,7 +55,7 @@ export default class NewSuggestionForm extends Component {
 
           <input type='submit' value='Add Suggestion' />
         </form>
-      </div>
+      </StyledDiv>
     )
   }
 }
