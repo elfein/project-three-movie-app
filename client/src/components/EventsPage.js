@@ -45,6 +45,7 @@ export default class EventsPage extends Component {
 
     handleSubmit = async (event) => {
         event.preventDefault()
+        if (this.state.newEvent.name) {
         const response = await axios.post('/api/events', this.state.newEvent)
         const events = [...this.state.events]
         events.push(response.data)
@@ -58,6 +59,7 @@ export default class EventsPage extends Component {
                 about: ''
             }
         })
+    } 
     }
 
     render() {
