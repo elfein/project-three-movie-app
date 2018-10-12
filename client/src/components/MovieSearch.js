@@ -9,13 +9,14 @@ flex-direction: column;
 align-items: center;
 #results {
   position: fixed;
-  transform: translateY(-50%);
+  transform: translateY(-53%);
   text-align: center;
   height: 700px;
   width:400px;
   overflow: auto;
   padding: 5px;
   background: rgb(30,90,120);
+  border-radius: 3px;
 }
 #searchAgain{
   padding-bottom: 6px; 
@@ -154,8 +155,6 @@ export default class MovieSearch extends Component {
           key={i} />
       })
     }
-
-    // ksjghdjgf fix reset search 
 
     return (
       <div>
