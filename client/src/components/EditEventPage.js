@@ -11,8 +11,10 @@ const StyledDiv = styled.div`
     100% {transform: scale(1); opacity: 1;}
 }
 animation: show .2s 1;
+h3, button, [type~=submit], a {
 font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 font-weight: 200;
+}
 display: flex;
 flex-direction: column;
 align-items: center;
