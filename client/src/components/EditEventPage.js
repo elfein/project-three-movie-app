@@ -6,14 +6,44 @@ import EditEventForm from './EditEventForm'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
+@keyframes show {
+    0% {transform: scale(.95) translateY(4%); opacity: 0;}
+    100% {transform: scale(1); opacity: 1;}
+}
+animation: show .2s 1;
+font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+font-weight: 200;
+display: flex;
+flex-direction: column;
+align-items: center;
+margin: 0 auto;
 color: #ffffff;
-    margin: 0 20vw;
 #delete {
-    margin: 40px 0;
+    margin: 30px 0;
     display: block;
 }
 a {
     color: #fff;
+    text-decoration: none;
+}
+a:hover {
+    transform: scale(1.1);
+    transition: transform ease 0.2s;
+}
+button, [type~=submit] {
+    margin: 20px 0 5px 0;
+    padding: 4px 0;
+    background: none;
+    color: #ffffff;
+    font-size: 1.4em;
+    border-top: 1px solid rgba(255,255,255,.4);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    border-left: none;
+    border-right: none;
+    :hover {
+        transform: scale(1.02);
+        transition: transform ease 0.2s;
+    }
 }
 `
 

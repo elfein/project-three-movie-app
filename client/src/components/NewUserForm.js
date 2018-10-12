@@ -26,6 +26,14 @@ input {
 }
 [type~=submit] {
     width: 60px;
+    background: none;
+    color: #fff;
+    border: none;
+    padding: 3px;
+    :hover {
+        transform: scale(1.02);
+        transition: transform ease 0.2s;
+    }
 }
 `
 
@@ -65,7 +73,7 @@ export default class NewUserForm extends Component {
                         <img src={this.props.currentUser.image} alt='Your Pic' />
                     </div>
                 </div>
-                <input type='submit' value='Attend' />
+                <input id='suggestion-btn' type='submit' value='Attend' />
             </StyledForm>
         )
     }

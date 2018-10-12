@@ -13,6 +13,10 @@ padding: 20px;
 h3, h4 {
     margin: 0;
 }
+h3, li, h6, #suggestion-btn {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 400;
+}
 h6 {
     margin: 10px 0;
 }
@@ -24,7 +28,11 @@ li {
     display: inline;
     margin: 0 8px 0 0;
 }
-
+#suggestion-btn {
+    border-top: 1px solid rgba(255,255,255,.4);
+    border-bottom: 1px solid rgba(255,255,255,.6);
+    font-size: 1em;
+}
 @keyframes slidein {
     0% {transform: scaleY(0.3) translateY(-50%); height: 0%; opacity: 0;}
     100% {transform: scaleY(1) translateY(0%); height: 100%; opacity: 1;}
@@ -70,7 +78,7 @@ export default class SuggestionItem extends Component {
                 <h3>{this.props.suggestion.name}</h3>
 
                 {this.props.editMode ?
-                    <span><button onClick={() => this.props.handleDelete(this.props.suggestion._id)}>Delete</button></span> :
+                    <span><button id='suggestion-btn' onClick={() => this.props.handleDelete(this.props.suggestion._id)}>Delete</button></span> :
                     null}
 
                 <h6>Genre: {this.props.suggestion.genre}</h6>
@@ -81,7 +89,7 @@ export default class SuggestionItem extends Component {
 
                 {this.state.showUserForm ?
                     <div id='sliding-animation'>
-                        <button onClick={this.toggleShowForm}>Cancel</button>
+                        <button id='suggestion-btn' onClick={this.toggleShowForm}>Cancel</button>
                         <p>You need to attend this event in order to vote!</p>
                         <p>Join the list of attendees:</p>
                         <NewUserForm
@@ -91,7 +99,7 @@ export default class SuggestionItem extends Component {
                             handleUserSubmit={this.props.handleUserSubmit}
                             currentUser={this.props.currentUser} />
                     </div> :
-                    <button onClick={this.checkUser}>Vote</button>}
+                    <button id='suggestion-btn' onClick={this.checkUser}>Vote</button>}
                     {this.state.showAlreadyVoted ?  
                     <p>You've already voted for this movie!</p> :
                     null }</div>

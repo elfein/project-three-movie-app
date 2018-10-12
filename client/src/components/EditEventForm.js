@@ -3,17 +3,14 @@ import styled from 'styled-components'
 
 const StyledDiv = styled.div`
 input {
-    display: block;
     margin: 0 0 10px 0;
-    width: 80%;
+    width: 100%;
+    padding: 6px;
+    border-radius: 3px;
 }
 p {
     font-size: 0.2em;
     margin: 10px 0 5px 0;
-}
-[type~=submit] {
-    width: 100px;
-    text-align: center;
 }
 `
 

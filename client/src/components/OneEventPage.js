@@ -9,6 +9,11 @@ import AttendeeList from './AttendeeList';
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
+@keyframes show {
+    0% {transform: scale(.95) translateY(1%); opacity: 0;}
+    100% {transform: scale(1); opacity: 1;}
+}
+animation: show .2s 1;
 main {
     color: #ffffff;
     display: flex;
