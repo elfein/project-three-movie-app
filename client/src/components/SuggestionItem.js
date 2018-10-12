@@ -3,6 +3,8 @@ import NewUserForm from './NewUserForm';
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
+border-top: 1px solid rgba(255,255,255,.3);
+    border-bottom: 1px solid rgba(255,255,255,.6);
 display: flex;
 padding: 20px;
 #movie-info {
@@ -21,6 +23,15 @@ ul {
 li {
     display: inline;
     margin: 0 8px 0 0;
+}
+
+@keyframes slidein {
+    0% {transform: scaleY(0.3) translateY(-50%); height: 0%; opacity: 0;}
+    100% {transform: scaleY(1) translateY(0%); height: 100%; opacity: 1;}
+}
+#sliding-animation {
+    animation: slidein .45s ease 1;
+    max-width: 216px;
 }
 `
 
@@ -69,7 +80,7 @@ export default class SuggestionItem extends Component {
                 <ul>{supporterList}</ul>
 
                 {this.state.showUserForm ?
-                    <div>
+                    <div id='sliding-animation'>
                         <button onClick={this.toggleShowForm}>Cancel</button>
                         <p>You need to attend this event in order to vote!</p>
                         <p>Join the list of attendees:</p>

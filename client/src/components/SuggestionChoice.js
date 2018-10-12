@@ -4,16 +4,34 @@ import MovieSearch from './MovieSearch';
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
+button, [type~=submit], #searchAgain {
+    background: none;
+    color: #fff;
+    border-right: none;
+    border-left: none;
+    border-top: 1px solid rgba(255,255,255,.4);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    font-size: 1.2em;
+    :hover {
+        transform: scale(1.04);
+        transition: transform ease 0.2s;
+    }
+}
+input {
+    color: rgb(30, 60, 100);
+    padding: 4px;
+    border-radius: 3px;
+}
 position: fixed;
 top: 50%;
 left: 50%;
 transform: scale(1.0) translate(-50%, -50%);
-background: rgb(30, 60, 100);
 padding: 30px;
 opacity: 1;
 z-index: 1010;
 padding: 30px;
 background: rgb(30,90,120);
+border-radius: 4px;
 transition: transform 0.2s ease, opacity 0.2s ease, height 0.2s ease, width 0.2s ease;
 min-width: 300px;
 max-height: 100%;

@@ -7,12 +7,28 @@ const StyledDiv = styled.div`
   text-align: center;
   margin: 30px 0 15px 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
 h2 {
-  display: inline;
-  margin: 0 10px;
+    margin: 0 10px;
+    font-family: 'Niconne', cursive;
+    font-weight: 400;
+    font-size: 2em;
+    letter-spacing: 0.1em;
+    margin: 15px 0 0 0;
+}
+button {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 0.7em;
+padding: 4px 0;
+    :hover {
+        transform: scale(1.1);
+        transition: transform ease 0.2s;
+    }
 }
 `
 

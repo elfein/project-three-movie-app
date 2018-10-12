@@ -9,6 +9,12 @@ align-items: center;
 img {
   width: 50%;
 }
+h5 {
+  font-weight: 400;
+    font-size: 1.2em;
+    margin: 10px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
 `
 
 export default class Result extends Component {
@@ -20,9 +26,9 @@ export default class Result extends Component {
   render() {
     return (
       <StyledDiv onClick={() => this.resetSearch(this.props.name, this.props.image, this.props.genre)}>
-        <button>Add Suggestion</button>
         <h5>{this.props.name}</h5>
         <img src={this.props.image} alt='result img' />
+        <button>Add Suggestion</button>
       </StyledDiv>
     )
   }

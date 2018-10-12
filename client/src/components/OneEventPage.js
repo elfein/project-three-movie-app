@@ -13,12 +13,10 @@ main {
     color: #ffffff;
     display: flex;
     justify-content: center;
-    max-width: 96vw;
-    margin: 0 auto;
 }
 #all-info {
-    margin: 0 30px;
-    width: 300px;
+    margin: 0 24px;
+    max-width: 300px;
 }
 #movies {
     max-width: 600px;
@@ -29,14 +27,37 @@ main {
 #suggest-btn {
     text-align: center;
     margin: 8px 0 30px 0;
+    button {
+    margin-top: 20px;
+    padding-bottom: 6px;
+    background: none;
+    color: #ffffff;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: 200;
+    font-size: 2em;
+    border-top: 1px solid rgba(255,255,255,.4);
+    border-bottom: 1px solid rgba(255,255,255,.4);
+    border-left: none;
+    border-right: none;
+    }
+    button:hover {
+        transform: scale(1.02);
+        transition: transform ease 0.2s;
+    }
 }
-a {
-    color: #fff;
+h4 {
+    font-weight: 400;
+    font-size: 1.2em;
+    margin: 10px 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 @media (max-width: 760px) {
     main {
         flex-direction: column;
         align-items: center;
+    }
+    #movies {
+    max-width: 96vw;
     }
     #all-info {
         h2 {

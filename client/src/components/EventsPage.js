@@ -10,7 +10,7 @@ display: flex;
 flex-direction: column;
 align-items: center;
 text-align: center;
-button {
+button, [type~=submit] {
     margin: 20px;
     background: none;
     color: #ffffff;
@@ -25,6 +25,11 @@ button {
         transform: scale(1.02);
         transition: transform ease 0.2s;
     }
+}
+input {
+    color: rgb(30, 60, 100);
+    padding: 4px;
+    border-radius: 3px;
 }
 `
 
@@ -88,7 +93,9 @@ export default class EventsPage extends Component {
 
         return (
             <StyledDiv>
-                <NavBar title={'All Movie Nights'} />
+                <NavBar 
+                title={'All Movie Nights'}
+                onHome={true} />
                 {eventList}
                 <NewEventForm
                     showNewForm={this.state.showNewForm}

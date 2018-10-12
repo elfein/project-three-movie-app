@@ -15,7 +15,10 @@ align-items: center;
   width:400px;
   overflow: auto;
   padding: 5px;
-  background: rgb(100,120,190);
+  background: rgb(30,90,120);
+}
+#searchAgain{
+  padding-bottom: 6px; 
 }
 `
 
@@ -159,7 +162,7 @@ export default class MovieSearch extends Component {
         {this.state.hasSearched ?
           <StyledDiv>
             <div id='results'>
-              <div onClick={this.clearSearch}>Search Again</div>
+              <div id='searchAgain' onClick={this.clearSearch}>Search Again</div>
               {allResults}
             </div>
           </StyledDiv> :

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import SplashLink from './SplashLink';
+import SplashLinkonHome from './SplashLinkonHome';
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
@@ -28,7 +29,8 @@ export default class NavBar extends Component {
   render() {
     return (
       <StyledDiv>
-        <div id='index' ><SplashLink /></div>
+        <div id='index' >{this.props.onHome ? <SplashLinkonHome /> :
+        <SplashLink />}</div>
         <h1>{this.props.title}</h1>
       </StyledDiv>
     )

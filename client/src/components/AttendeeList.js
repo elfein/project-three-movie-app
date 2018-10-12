@@ -5,6 +5,8 @@ import styled from 'styled-components'
 const StyledDiv = styled.div`
 display: flex;
 flex-wrap: wrap;
+border-bottom: 1px solid rgba(255,255,255,0.9);
+padding-bottom: 10px;
 `
 
 export default class AttendeeList extends Component {

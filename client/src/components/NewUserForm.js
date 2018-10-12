@@ -20,7 +20,7 @@ img {
     width: 56px;
 }
 input {
-    width: 200px;
+    width: 140px;
     display: block;
     margin: 0 0 18px 0; 
 }

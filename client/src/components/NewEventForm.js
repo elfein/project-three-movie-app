@@ -31,10 +31,15 @@ z-index: 1010;
 padding: 30px;
 background: rgb(30,90,120);
 transform: scale(1.0) translate(-50%, -50%);
+width: 300px;
 &.hidden {
   opacity: 0;
   z-index: -1000;
   transform: scale(0.96) translate(-50%, -46%);
+}
+#cancel {
+  font-size: 1em;
+  margin: 0;
 }
 `
 
@@ -57,7 +62,7 @@ export default class NewEventForm extends Component {
     return (
       <StyledOverlay>
         <StyledDiv className={this.props.showNewForm ? '' : "hidden"}>
-          <button onClick={this.props.clickHandler}>Cancel</button>
+          <button id='cancel' onClick={this.props.clickHandler}>Cancel</button>
           <StyledForm onSubmit={this.props.handleSubmit} >
             <p>Event Name</p>
             <input
