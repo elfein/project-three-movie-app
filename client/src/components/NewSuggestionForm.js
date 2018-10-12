@@ -2,6 +2,11 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 
 const StyledDiv = styled.div`
+@keyframes show {
+    0% {transform: scale(.95) translateY(4%); opacity: 0;}
+    100% {transform: scale(1); opacity: 1;}
+}
+animation: show .2s 1;
 button{
   margin: 0 auto;
 }
