@@ -29,6 +29,7 @@ transition: transform 0.2s ease, opacity 0.2s ease;
 opacity: 100%;
 z-index: 1010;
 padding: 30px;
+border-radius: 3px;
 background: rgb(30,90,120);
 transform: scale(1.0) translate(-50%, -50%);
 width: 300px;

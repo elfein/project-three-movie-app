@@ -175,12 +175,6 @@ export default class OneEventPage extends Component {
     handleSubmit = (event) => {
         event.preventDefault()
         this.handleSubmitNotForm()
-        this.setState({ newSuggest: {
-            name: '',
-            genre: '',
-            minutes: '',
-            img: 'https://s.studiobinder.com/wp-content/uploads/2017/12/Movie-Poster-Template-Dark-with-Image.jpg?x81279'
-        }})
     }
 
     handleSubmitNotForm = async () => {
@@ -188,6 +182,12 @@ export default class OneEventPage extends Component {
         await axios.post(`/api/events/${eventId}/movies`, this.state.newSuggest)
         await this.getEvent()
         this.onClick()
+        this.setState({ newSuggest: {
+            name: '',
+            genre: '',
+            minutes: '',
+            img: 'https://s.studiobinder.com/wp-content/uploads/2017/12/Movie-Poster-Template-Dark-with-Image.jpg?x81279'
+        }})
     }
 
     handleUserSubmit = async (event, movieId) => {
