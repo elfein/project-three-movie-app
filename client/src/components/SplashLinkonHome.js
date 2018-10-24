@@ -13,6 +13,8 @@ h3 {
 a {
   text-decoration: none;
   color: rgb(255,255,255);
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-weight: 200;
 }
 a:hover {
   transform: scale(1.03);
@@ -25,6 +27,7 @@ export default class SplashLink extends Component {
     return (
       <StyledDiv>
         <Link to='/'><h3>S</h3></Link>
+        <a target="_blank" href="https://github.com/elfein/project-three-movie-app/">GitHub</a>
       </StyledDiv>
     )
   }
